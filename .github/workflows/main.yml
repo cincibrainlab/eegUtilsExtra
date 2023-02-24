@@ -22,9 +22,9 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
       - name: Install dependencies
-        run: |
-          install.packages(c("devtools", "remotes"))
-          remotes::install_deps()
+        run:  |
+          Rscript -e 'install.packages(c("devtools", "remotes"))'
+          Rscript -e 'remotes::install_deps()'
       - name: Check
         run: |
           devtools::check()

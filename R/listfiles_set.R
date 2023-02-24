@@ -17,16 +17,15 @@
 #' @examples
 #' # List SET files in a directory tree containing "data" and "subject1"
 #' # listfiles_set("/path/to/directory", "data|subject1", "SET")
-
-
+#' @export
 listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "") {
   # Find all files in a directory tree with a given extension and containing a keyword
   # in their name, in subdirectories containing a certain string
-#  requireNamespace("dplyr", quietly = TRUE)
+  requireNamespace("dplyr", quietly = TRUE)
 
   # Find subdirectories containing a certain string
-  subdir_paths <- list.files(dir_path, recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
-  subdir_paths <- subdir_paths[grep(subdir_string, subdir_paths)]
+  subdir_paths <- list.files(.data$dir_path, recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
+  subdir_paths <- subdir_paths[grep(.data$subdir_string, .data$subdir_paths)]
 
   if (length(subdir_paths) == 0) {
     warning(paste0("No subdirectories found containing '", subdir_string, "'"))
@@ -37,7 +36,7 @@ listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "
   file_paths <- list.files(subdir_paths, recursive = TRUE, full.names = TRUE, pattern = paste0(".*", custom_keyword, ".*\\.(set)"))
 
   if (length(file_paths) == 0) {
-    warning(paste0("No SET files found containing '", custom_keyword, "'"))
+    warning(paste0("No SET files found containing '", .data$custom_keyword, "'"))
     return(data.frame())
   }
 

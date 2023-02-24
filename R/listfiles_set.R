@@ -4,7 +4,6 @@
 #' data frame.
 #'
 #' @import dplyr
-#' @import magrittr
 #' @import tibble
 #' @import tidyr
 #' @importFrom rlang .data

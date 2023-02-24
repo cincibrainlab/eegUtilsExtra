@@ -1,5 +1,7 @@
 # eegUtilsExtra
 
+[![R-CMD-check](https://github.com/cincibrainlab/eegUtilsExtra/actions/workflows/main.yml/badge.svg)](https://github.com/cincibrainlab/eegUtilsExtra/actions/workflows/main.yml)
+
 
 `eegUtilsExtra` is an R package that provides additional utility functions for processing and analyzing EEG data, building on the `eegUtils` package. It includes functions for data cleaning, filtering, feature extraction, and visualization.
 

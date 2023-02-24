@@ -1,6 +1,6 @@
 #' List SET files within subdirectories
 #'
-#' Find all SET files in a directory tree containing a certain string, and return the results as a
+#' Find all SET files in a directory tree containing a certain string, and return the results as a # nolint
 #' data frame.
 #'
 #' @param dir_path A character string specifying the root directory to search.
@@ -10,7 +10,7 @@
 #' @examples
 #' # List SET files in a directory tree containing "data" and "subject1"
 #' listfiles_set("/path/to/directory", "data|subject1", "SET")
-listfiles_set <- function(dir_path, subdir_string, custom_keyword) {
+listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "") {
   # Find all files in a directory tree with a given extension and containing a keyword
   # in their name, in subdirectories containing a certain string
 
@@ -18,8 +18,18 @@ listfiles_set <- function(dir_path, subdir_string, custom_keyword) {
   subdir_paths <- list.files(dir_path, recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
   subdir_paths <- subdir_paths[grep(subdir_string, subdir_paths)]
 
+  if (length(subdir_paths) == 0) {
+    warning(paste0("No subdirectories found containing '", subdir_string, "'"))
+    return(data.frame())
+  }
+
   # Find SET files in subdirectories with a certain keyword
   file_paths <- list.files(subdir_paths, recursive = TRUE, full.names = TRUE, pattern = paste0(".*", custom_keyword, ".*\\.(set)"))
+
+  if (length(file_paths) == 0) {
+    warning(paste0("No SET files found containing '", custom_keyword, "'"))
+    return(data.frame())
+  }
 
   # Generate a data frame with the results
   library(tidyverse)

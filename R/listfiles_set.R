@@ -9,7 +9,10 @@
 #' @return A data frame with the results, including the subdirectory, file name (without extension), and extension.
 #' @examples
 #' # List SET files in a directory tree containing "data" and "subject1"
-#' listfiles_set("/path/to/directory", "data|subject1", "SET")
+#' # listfiles_set("/path/to/directory", "data|subject1", "SET")
+
+library(tidyverse)
+
 listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "") {
   # Find all files in a directory tree with a given extension and containing a keyword
   # in their name, in subdirectories containing a certain string

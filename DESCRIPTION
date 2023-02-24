@@ -5,9 +5,13 @@ Authors@R:
     person("Ernest", "Pedapati", , "ernest.pedapati@cchmc.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7954-5104"))
 Description: This package provides additional utility functions for processing and analyzing EEG data in R, building on the eegUtils package. 
-License: |
-  File
-    LICENSE
+License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    magrittr,
+    tibble,
+    tidyr,
+    rlang

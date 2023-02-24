@@ -23,8 +23,8 @@ listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "
   requireNamespace("dplyr", quietly = TRUE)
 
   # Find subdirectories containing a certain string
-  subdir_paths <- list.files(.data$dir_path, recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
-  subdir_paths <- subdir_paths[grep(.data$subdir_string, .data$subdir_paths)]
+  subdir_paths <- list.files(dir_path, recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
+  subdir_paths <- subdir_paths[grep(subdir_string, subdir_paths)]
 
   if (length(subdir_paths) == 0) {
     warning(paste0("No subdirectories found containing '", subdir_string, "'"))
@@ -35,7 +35,7 @@ listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "
   file_paths <- list.files(subdir_paths, recursive = TRUE, full.names = TRUE, pattern = paste0(".*", custom_keyword, ".*\\.(set)"))
 
   if (length(file_paths) == 0) {
-    warning(paste0("No SET files found containing '", .data$custom_keyword, "'"))
+    warning(paste0("No SET files found containing '", custom_keyword, "'"))
     return(data.frame())
   }
 

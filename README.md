@@ -14,10 +14,8 @@ You can install `eegUtilsExtra` from GitHub using the `devtools` package:
 install.packages("devtools")
 
 # Install eegUtilsExtra from GitHub
-devtools::install_github("username/eegUtilsExtra")
+devtools::install_github("cincibrainlab/eegUtilsExtra")
 ```
-
-Replace "username" with the GitHub username of the package author.
 
 ## Usage
 
@@ -26,14 +24,12 @@ Here's an example of how to use the `clean_data` function from `eegUtilsExtra` t
 ```r
 library(eegUtilsExtra)
 
-# Load an example EEG dataset from the eegUtils package
-data(eeg_data)
+# Find all EEG SET files in subdirectories of a directory that contain "VEP"
+results_df <- list_SET_files_within_subdirs(dir_path = "/path/to/directory",
+                                             keyword = "VEP")
 
-# Clean the data using the clean_data function
-cleaned_data <- clean_data(eeg_data, threshold = 3, window_size = 100)
-
-# View the cleaned data
-plot(cleaned_data)
+# View the resulting tidy data frame
+head(results_df)
 ```
 
 ## Contributing

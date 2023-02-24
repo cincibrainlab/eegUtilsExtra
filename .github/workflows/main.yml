@@ -28,4 +28,4 @@ jobs:
           Rscript -e "remotes::install_deps()"
       - name: Check
         run: |
-          Rscript -e "devtools::check()""
+          Rscript -e "devtools::check()"

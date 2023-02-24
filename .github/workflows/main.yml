@@ -26,6 +26,7 @@ jobs:
           Rscript -e "install.packages('devtools')"
           Rscript -e "install.packages('tidyverse')"
           Rscript -e "install.packages('remotes')"
+          Rscript -e "library(tidyverse)"
           Rscript -e "remotes::install_deps()"
       - name: Check
         run: |

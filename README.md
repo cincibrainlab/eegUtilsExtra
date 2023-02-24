@@ -19,7 +19,7 @@ devtools::install_github("cincibrainlab/eegUtilsExtra")
 
 ## Usage
 
-Here's an example of how to use the `clean_data` function from `eegUtilsExtra` to remove noisy data from an EEG dataset:
+Here's an example of how to use the `list_SET_files_within_subdirs` function from `eegUtilsExtra` to create a dataframe of SET files for processing
 
 ```r
 library(eegUtilsExtra)

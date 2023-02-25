@@ -10,21 +10,23 @@
 #' @param dir_path A character string specifying the root directory to search.
 #' @param subdir_string A character string specifying the subdirectory pattern to search for.
 #' @param custom_keyword A character string specifying the keyword to search for in the SET file names.
+#' @param exclude_dirs A character string specifying the keyword to exclude from the directory names.
 #' @return A data frame with the results, including the subdirectory, file name (without extension), and extension.
 #' @name listfiles_set
 #' @keywords listfiles_set, files, directory
 #' @examples
-#' # List SET files in a directory tree containing "data" and "subject1"
-#' # listfiles_set("/path/to/directory", "data|subject1", "SET")
+#' # List SET files in a directory tree containing "data" and "subject1", excluding directories containing "exclude"
+#' # listfiles_set("/path/to/directory", "data|subject1", "SET", "exclude")
 #' @export
-listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "") {
+listfiles_set <- function(dir_path = ".", subdir_string = "", custom_keyword = "", exclude_dirs = "") {
   # Find all files in a directory tree with a given extension and containing a keyword
   # in their name, in subdirectories containing a certain string
   requireNamespace("dplyr", quietly = TRUE)
 
-  # Find subdirectories containing a certain string
+  # Find subdirectories containing a certain string and exclude directories containing a certain keyword
   subdir_paths <- list.files(dir_path, recursive = TRUE, full.names = TRUE, include.dirs = TRUE)
   subdir_paths <- subdir_paths[grep(subdir_string, subdir_paths)]
+  subdir_paths <- subdir_paths[!grepl(exclude_dirs, subdir_paths, fixed = TRUE)]
 
   if (length(subdir_paths) == 0) {
     warning(paste0("No subdirectories found containing '", subdir_string, "'"))
